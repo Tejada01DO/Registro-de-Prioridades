@@ -124,6 +124,43 @@
         }
       },
       {
+        "HashCode": -1240218542,
+        "Kind": "Components.Component",
+        "Name": "RegistroDePrioridades.Pages.Index",
+        "AssemblyName": "RegistroDePrioridades",
+        "CaseSensitive": true,
+        "TagMatchingRules": [
+          {
+            "TagName": "Index"
+          }
+        ],
+        "Metadata": {
+          "Common.TypeName": "RegistroDePrioridades.Pages.Index",
+          "Common.TypeNameIdentifier": "Index",
+          "Common.TypeNamespace": "RegistroDePrioridades.Pages",
+          "Runtime.Name": "Components.IComponent"
+        }
+      },
+      {
+        "HashCode": 1215482465,
+        "Kind": "Components.Component",
+        "Name": "RegistroDePrioridades.Pages.Index",
+        "AssemblyName": "RegistroDePrioridades",
+        "CaseSensitive": true,
+        "TagMatchingRules": [
+          {
+            "TagName": "RegistroDePrioridades.Pages.Index"
+          }
+        ],
+        "Metadata": {
+          "Common.TypeName": "RegistroDePrioridades.Pages.Index",
+          "Common.TypeNameIdentifier": "Index",
+          "Common.TypeNamespace": "RegistroDePrioridades.Pages",
+          "Components.NameMatch": "Components.FullyQualifiedNameMatch",
+          "Runtime.Name": "Components.IComponent"
+        }
+      },
+      {
         "HashCode": -63748381,
         "Kind": "Components.Component",
         "Name": "RegistroDePrioridades.Pages.Registros.PrioridadesR",
@@ -178,43 +215,6 @@
           "Common.TypeName": "RegistroDePrioridades.Pages.Registros.PrioridadesR",
           "Common.TypeNameIdentifier": "PrioridadesR",
           "Common.TypeNamespace": "RegistroDePrioridades.Pages.Registros",
-          "Components.NameMatch": "Components.FullyQualifiedNameMatch",
-          "Runtime.Name": "Components.IComponent"
-        }
-      },
-      {
-        "HashCode": -1240218542,
-        "Kind": "Components.Component",
-        "Name": "RegistroDePrioridades.Pages.Index",
-        "AssemblyName": "RegistroDePrioridades",
-        "CaseSensitive": true,
-        "TagMatchingRules": [
-          {
-            "TagName": "Index"
-          }
-        ],
-        "Metadata": {
-          "Common.TypeName": "RegistroDePrioridades.Pages.Index",
-          "Common.TypeNameIdentifier": "Index",
-          "Common.TypeNamespace": "RegistroDePrioridades.Pages",
-          "Runtime.Name": "Components.IComponent"
-        }
-      },
-      {
-        "HashCode": 1215482465,
-        "Kind": "Components.Component",
-        "Name": "RegistroDePrioridades.Pages.Index",
-        "AssemblyName": "RegistroDePrioridades",
-        "CaseSensitive": true,
-        "TagMatchingRules": [
-          {
-            "TagName": "RegistroDePrioridades.Pages.Index"
-          }
-        ],
-        "Metadata": {
-          "Common.TypeName": "RegistroDePrioridades.Pages.Index",
-          "Common.TypeNameIdentifier": "Index",
-          "Common.TypeNamespace": "RegistroDePrioridades.Pages",
           "Components.NameMatch": "Components.FullyQualifiedNameMatch",
           "Runtime.Name": "Components.IComponent"
         }
