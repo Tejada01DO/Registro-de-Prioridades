@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace RegistroDePrioridades.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20230514091724_Inicial")]
-    partial class Inicial
+    [Migration("20230521171725_inicial")]
+    partial class inicial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
