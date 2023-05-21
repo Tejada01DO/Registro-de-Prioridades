@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace RegistroDePrioridades.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20230514091724_Inicial")]
+    [Migration("20230521035354_Inicial")]
     partial class Inicial
     {
         /// <inheritdoc />
@@ -17,6 +17,39 @@ namespace RegistroDePrioridades.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.5");
+
+            modelBuilder.Entity("Cliente", b =>
+                {
+                    b.Property<int>("ClienteId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Celular")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Direccion")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Nombres")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("RNC")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Telefono")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("ClienteId");
+
+                    b.ToTable("Clientes");
+                });
 
             modelBuilder.Entity("Prioridades", b =>
                 {

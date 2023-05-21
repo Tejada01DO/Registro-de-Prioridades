@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions; 
 
 public class PrioridadesBLL
 {
@@ -53,5 +54,9 @@ public class PrioridadesBLL
     public Prioridades? Buscar(int PrioridadId)
     {
         return _context.Prioridades.AsNoTracking().SingleOrDefault(p => p.PrioridadId == PrioridadId);
+    }
+
+    public List<Prioridades> Listar(Expression<Func<Prioridades, bool>> Criterio){
+        return _context.Prioridades.Where(Criterio).AsNoTracking().ToList();
     }
 }
