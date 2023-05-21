@@ -116,14 +116,20 @@
 
     public void Eliminar()
     {
-        if(prioridadesBLL.Eliminar(this.prioridades))
-        {
-            mensaje="Se ha eliminado correctamente";
-            Nuevo();
-        }
-        else
-        {
-            mensaje="Error al eliminar, intentelo de nuevo";
+        if(Validar()){
+            
+            if(prioridadesBLL.Eliminar(this.prioridades))
+            {
+                mensaje="Se ha eliminado correctamente";
+                Nuevo();
+            }
+            else
+            {
+                mensaje="Error al eliminar, intentelo de nuevo";
+            }
+
+        }else{
+            mensaje = "No hay nada por eliminar";
         }
     }
 }
