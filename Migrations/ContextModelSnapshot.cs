@@ -15,7 +15,7 @@ namespace RegistroDePrioridades.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.5");
 
-            modelBuilder.Entity("Cliente", b =>
+            modelBuilder.Entity("Clientes", b =>
                 {
                     b.Property<int>("ClienteId")
                         .ValueGeneratedOnAdd()

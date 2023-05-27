@@ -78,7 +78,7 @@
 
     public int ClienteId { get; set; }
 
-    public Cliente cliente { get; set; } = new Cliente();
+    public Clientes cliente { get; set; } = new Clientes();
 
     public string mensaje = string.Empty;
 
@@ -134,7 +134,7 @@
 
     public void Nuevo()
     {
-        this.cliente = new Cliente();
+        this.cliente = new Clientes();
         mensaje = string.Empty;
     }
 

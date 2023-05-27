@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace RegistroDePrioridades.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20230521173312_inicial")]
-    partial class inicial
+    [Migration("20230527225749_Inicial")]
+    partial class Inicial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -18,7 +18,7 @@ namespace RegistroDePrioridades.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.5");
 
-            modelBuilder.Entity("Cliente", b =>
+            modelBuilder.Entity("Clientes", b =>
                 {
                     b.Property<int>("ClienteId")
                         .ValueGeneratedOnAdd()

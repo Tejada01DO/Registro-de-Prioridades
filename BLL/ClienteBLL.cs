@@ -15,7 +15,7 @@ public class ClienteBLL{
         return _context.Clientes.Any(c => c.ClienteId == ClienteId);
     }
 
-    public bool Insertar(Cliente cliente)
+    public bool Insertar(Clientes cliente)
     {
         _context.Clientes.Add(cliente);
         int guardado = _context.SaveChanges();
@@ -23,7 +23,7 @@ public class ClienteBLL{
         return guardado > 0;
     }
 
-    public bool Modificar(Cliente cliente)
+    public bool Modificar(Clientes cliente)
     {
         _context.Update(cliente);
         int modificado = _context.SaveChanges();
@@ -31,7 +31,7 @@ public class ClienteBLL{
         return modificado > 0;
     }
 
-    public bool Guardar(Cliente cliente)
+    public bool Guardar(Clientes cliente)
     {
         if(!Existe(cliente.ClienteId))
         {
@@ -43,7 +43,7 @@ public class ClienteBLL{
         }
     }
 
-    public bool Eliminar(Cliente cliente)
+    public bool Eliminar(Clientes cliente)
     {
         _context.Clientes.Remove(cliente);
         int eliminado = _context.SaveChanges();
@@ -51,12 +51,12 @@ public class ClienteBLL{
         return eliminado > 0;
     }
 
-    public Cliente? Buscar(int ClienteId)
+    public Clientes? Buscar(int ClienteId)
     {
         return _context.Clientes.AsNoTracking().SingleOrDefault(c => c.ClienteId == ClienteId);
     }
 
-    public List<Cliente> Listar(Expression<Func<Cliente, bool>> Criterio){
+    public List<Clientes> Listar(Expression<Func<Clientes, bool>> Criterio){
         return _context.Clientes.Where(Criterio).AsNoTracking().ToList();
     }
 }
