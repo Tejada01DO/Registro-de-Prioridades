@@ -16,12 +16,12 @@ namespace RegistroDePrioridades.Migrations
                 {
                     ClienteId = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Nombres = table.Column<string>(type: "TEXT", nullable: false),
-                    Telefono = table.Column<string>(type: "TEXT", nullable: false),
-                    Celular = table.Column<string>(type: "TEXT", nullable: false),
-                    RNC = table.Column<string>(type: "TEXT", nullable: false),
-                    Email = table.Column<string>(type: "TEXT", nullable: false),
-                    Direccion = table.Column<string>(type: "TEXT", nullable: false)
+                    Nombres = table.Column<string>(type: "TEXT", maxLength: 30, nullable: false),
+                    Telefono = table.Column<string>(type: "TEXT", maxLength: 10, nullable: false),
+                    Celular = table.Column<string>(type: "TEXT", maxLength: 10, nullable: false),
+                    RNC = table.Column<string>(type: "TEXT", maxLength: 14, nullable: false),
+                    Email = table.Column<string>(type: "TEXT", maxLength: 30, nullable: false),
+                    Direccion = table.Column<string>(type: "TEXT", maxLength: 50, nullable: false)
                 },
                 constraints: table =>
                 {
