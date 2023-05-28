@@ -128,8 +128,34 @@
 
     public bool Validar()
     {
-        return cliente.Nombres != null && cliente.Telefono != null && cliente.Celular != null &&
-        cliente.RNC != null && cliente.Direccion != null && cliente.Email != null;
+        if(string.IsNullOrEmpty(cliente.Nombres))
+        {
+            return false;
+        }
+        if(string.IsNullOrEmpty(cliente.Telefono))
+        {
+            return false;
+        }
+        if(string.IsNullOrEmpty(cliente.Celular))
+        {
+            return false;
+        }
+        if(string.IsNullOrEmpty(cliente.RNC))
+        {
+            return false;
+        }
+        if(string.IsNullOrEmpty(cliente.Email))
+        {
+            return false;
+        }
+        if(string.IsNullOrEmpty(cliente.Direccion))
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
     }
 
     public void Nuevo()

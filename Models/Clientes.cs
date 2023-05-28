@@ -6,23 +6,23 @@ public class Clientes{
     public int ClienteId { get; set; }
 
     [Required(ErrorMessage = "El nombre es obligatorio")]
-    [StringLength(maximumLength: 30, MinimumLength = 15)]
+    [StringLength(maximumLength: 30, MinimumLength = 5)]
     public string Nombres { get; set; } = string.Empty;
 
     [Required(ErrorMessage = "Es necesario agregar un numero de telefono")]
-    [StringLength(maximumLength:10, MinimumLength = 10)]
+    [StringLength(maximumLength:17, MinimumLength = 10)]
     public string? Telefono { get; set; }
 
     [Required(ErrorMessage = "El celular es obligatorio")]
-    [StringLength(maximumLength: 10, MinimumLength = 10)]
+    [StringLength(maximumLength: 17, MinimumLength = 10)]
     public string? Celular { get; set; }
 
     [Required(ErrorMessage = "El RNC es obligatorio")]
-    [StringLength(maximumLength: 14, MinimumLength = 14)]
+    [StringLength(maximumLength: 17, MinimumLength = 10)]
     public string RNC { get; set; } = string.Empty;
 
     [Required(ErrorMessage = "Es necesario agregar un numero de telefono")]
-    [StringLength(maximumLength: 30, MinimumLength = 20)]
+    [StringLength(maximumLength: 30, MinimumLength = 15)]
     public string Email { get; set; } = string.Empty;
 
     [Required(ErrorMessage = "Es necesario agregar una direccion")]

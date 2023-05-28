@@ -1,0 +1,43 @@
+@page "/ConsultaTicket"
+
+@inject TicketBLL ticketBLL
+
+<table class="table table-bordered">
+
+    <thead>
+        <tr>
+            <th>Ticket ID</th>
+            <th>Fecha</th>
+            <th>Cliente ID</th>
+            <th>Sistema ID</th>
+            <th>Prioridad ID</th>
+            <th>Solicitado Por</th>
+            <th>Asunto</th>
+            <th>Descripcion</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in L_Tickets)
+        {
+            <tr>
+                <td>@item.TicketId</td>
+                <td>@item.Fecha</td>
+                <td>@item.ClienteId</td>
+                <td>@item.SistemaId</td>
+                <td>@item.PrioridadId</td>
+                <td>@item.SolicitadoPor</td>
+                <td>@item.Asunto</td>
+                <td>@item.Descripcion</td>
+            </tr> 
+        }
+    </tbody>
+</table>
+
+@code{
+    public List<Tickets> L_Tickets { get; set; } = new List<Tickets>();
+
+        protected override void OnInitialized()
+        {
+            L_Tickets = ticketBLL.Listar(c => true); 
+        }
+}

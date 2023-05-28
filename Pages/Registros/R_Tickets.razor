@@ -1,0 +1,197 @@
+@page "/RegistroTickets"
+@page "/RegistroTickets/{TicketId:int}"
+
+@inject TicketBLL ticketBLL
+@inject ClienteBLL ClienteBLL
+@inject PrioridadesBLL prioridadesBLL
+
+<EditForm model = "Tickets" OnValidSubmit="Guardar">
+    <DataAnnotationsValidator />
+
+    <div class ="container">
+        <div class="card shadow-lg">
+            <div class="card-header">
+                <h3>Registro de Tickets.</h3>
+            </div>
+            <div class=card-body>
+
+                <div class= "col-xs-12 col-sm-12 col-md-8 col-lg-6 col-xl-4">
+                    <label>ID Ticket:</label>
+                    <div class="input-group mb-3">
+                        <InputNumber @bind-Value ="tickets.TicketId" class="form-control" aria-describedby="BotonBuscar"/>
+                        <button @onclick="Buscar" class="btn btn-outline-primary" type="button" id="BotonBuscar"><i class ="oi oi-magnifying-glass"/></button>
+                    </div>
+                </div>
+                
+                <div class="mb-3">
+                    <label class="form-label" for="Fecha">Fecha:</label>
+                    <InputDate @bind-Value="tickets.Fecha" class="form-control" />
+                    <ValidationMessage For="@(() => tickets.Fecha)" />
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" for="ClienteId">ClienteId:</label>
+                    <InputSelect @bind-Value="tickets.ClienteId" class="form-control">
+                    @foreach(var item in L_Cliente)
+                    {
+                        <option value="@item.ClienteId">@item.ClienteId</option>
+                    }
+                    </InputSelect> 
+                    <ValidationMessage For="@(() => tickets.ClienteId)"></ValidationMessage> 
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" for="SistemaId">SistemaId:</label>
+                    <InputNumber @bind-Value="tickets.SistemaId" class="form-control"/>
+                    <ValidationMessage For="@(() => tickets.SistemaId)" />
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" for="PrioridadId">PrioridadId:</label>
+                    <InputSelect @bind-Value="tickets.PrioridadId" class="form-control">
+                    @foreach(var item in L_Prioridades)
+                    {
+                        <option value="@item.PrioridadId">@item.PrioridadId</option>
+                    }
+                    </InputSelect> 
+                    <ValidationMessage For="@(() => tickets.PrioridadId)"></ValidationMessage> 
+                </div>
+                
+                <div class="mb-3">
+                    <label class="form-label" for="SolicitadoPor">SolicitadoPor:</label>
+                    <InputText @bind-Value="tickets.SolicitadoPor" class="form-control"/>
+                    <ValidationMessage For="@(() => tickets.SolicitadoPor)" />
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" for="Asunto">Asunto:</label>
+                    <InputText @bind-Value="tickets.Asunto" class="form-control"/>
+                    <ValidationMessage For="@(() => tickets.Asunto)" />
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" for="Descripcion">Descripcion:</label>
+                    <InputText @bind-Value="tickets.Descripcion" class="form-control"/>
+                    <ValidationMessage For="@(() => tickets.Descripcion)" />
+                </div>
+
+            </div>
+            <div class="card-footer d-flex justify-content-center">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-outline-primary" @onclick="Nuevo">Nuevo <i class="oi oi-file"/></button>
+                    <button type="submit" class="btn btn-outline-success">Guardar <i class="oi oi-document"/></button>
+                    <button type="button" class="btn btn-outline-danger"@onclick="Eliminar">Eliminar <i class="oi oi-trash"/></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</EditForm>
+<label>@mensaje</label>
+
+@code
+{
+    [Parameter]
+
+    public int TicketId { get; set; }
+
+    public Tickets tickets { get; set; } = new Tickets();
+
+    public string mensaje = string.Empty;
+
+    public List<Clientes> L_Cliente { get; set; } = new List<Clientes>();
+    
+    public List<Prioridades> L_Prioridades { get; set; } = new List<Prioridades>();
+
+    protected override void OnInitialized()
+    {
+        if(TicketId > 0)
+        {
+            tickets.TicketId = TicketId;
+            Buscar();
+        }
+        L_Cliente = ClienteBLL.Listar(c => true);
+        L_Prioridades = prioridadesBLL.Listar(c => true); 
+    }
+
+    public void Buscar()
+    {
+        var clienteEncontrado = ticketBLL.Buscar(tickets.TicketId);
+
+        if(clienteEncontrado != null)
+        {
+            this.tickets = clienteEncontrado;
+        }
+        else
+        {
+            mensaje = "no se ha encontrado ese cliente";
+        }
+    }
+
+    public void Guardar()
+    {
+        if(Validar())
+        {
+             
+            if(ticketBLL.Guardar(this.tickets))
+            {
+                mensaje= "Se ha guardado con exito";
+                Nuevo();
+            }
+            else
+            {
+                mensaje = "Error al momento de guardar, intentelo de nuevo";
+            }
+        }
+        else
+        {
+            mensaje = "Por favor rellene los campos";
+        }
+    }
+
+    public bool Validar()
+    {
+        if(string.IsNullOrEmpty(tickets.SolicitadoPor))
+        {
+            return false;
+        }
+        if(string.IsNullOrEmpty(tickets.Asunto))
+        {
+            return false;
+        }
+        if(string.IsNullOrEmpty(tickets.Descripcion))
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
+
+    public void Nuevo()
+    {
+        this.tickets = new Tickets();
+        mensaje = string.Empty;
+    }
+
+    public void Eliminar()
+    {
+        if(Validar()){
+
+            if(ticketBLL.Eliminar(this.tickets))
+            {
+                mensaje="Se ha eliminado correctamente";
+                Nuevo();
+            }
+            else
+            {
+                mensaje="Error al eliminar, intentelo de nuevo";
+            }
+            
+        }else{
+            mensaje = "No hay nada por eliminar";
+        }
+    }
+}

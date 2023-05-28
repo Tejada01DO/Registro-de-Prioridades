@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
@@ -17,9 +18,9 @@ namespace RegistroDePrioridades.Migrations
                     ClienteId = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     Nombres = table.Column<string>(type: "TEXT", maxLength: 30, nullable: false),
-                    Telefono = table.Column<string>(type: "TEXT", maxLength: 10, nullable: false),
-                    Celular = table.Column<string>(type: "TEXT", maxLength: 10, nullable: false),
-                    RNC = table.Column<string>(type: "TEXT", maxLength: 14, nullable: false),
+                    Telefono = table.Column<string>(type: "TEXT", maxLength: 17, nullable: false),
+                    Celular = table.Column<string>(type: "TEXT", maxLength: 17, nullable: false),
+                    RNC = table.Column<string>(type: "TEXT", maxLength: 17, nullable: false),
                     Email = table.Column<string>(type: "TEXT", maxLength: 30, nullable: false),
                     Direccion = table.Column<string>(type: "TEXT", maxLength: 50, nullable: false)
                 },
@@ -41,6 +42,25 @@ namespace RegistroDePrioridades.Migrations
                 {
                     table.PrimaryKey("PK_Prioridades", x => x.PrioridadId);
                 });
+
+            migrationBuilder.CreateTable(
+                name: "Tickets",
+                columns: table => new
+                {
+                    TicketId = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Fecha = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    ClienteId = table.Column<int>(type: "INTEGER", nullable: false),
+                    SistemaId = table.Column<int>(type: "INTEGER", nullable: false),
+                    PrioridadId = table.Column<int>(type: "INTEGER", nullable: false),
+                    SolicitadoPor = table.Column<string>(type: "TEXT", nullable: false),
+                    Asunto = table.Column<string>(type: "TEXT", nullable: false),
+                    Descripcion = table.Column<string>(type: "TEXT", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Tickets", x => x.TicketId);
+                });
         }
 
         /// <inheritdoc />
@@ -51,6 +71,9 @@ namespace RegistroDePrioridades.Migrations
 
             migrationBuilder.DropTable(
                 name: "Prioridades");
+
+            migrationBuilder.DropTable(
+                name: "Tickets");
         }
     }
 }

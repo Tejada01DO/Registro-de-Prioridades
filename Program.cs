@@ -13,6 +13,7 @@ builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddScoped<PrioridadesBLL>();
 builder.Services.AddScoped<ClienteBLL>();
+builder.Services.AddScoped<TicketBLL>();
 
 var app = builder.Build();
 
