@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace RegistroDePrioridades.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20230527225749_Inicial")]
+    [Migration("20230528010517_Inicial")]
     partial class Inicial
     {
         /// <inheritdoc />
@@ -25,6 +25,7 @@ namespace RegistroDePrioridades.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Celular")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Direccion")
@@ -44,6 +45,7 @@ namespace RegistroDePrioridades.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Telefono")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("ClienteId");

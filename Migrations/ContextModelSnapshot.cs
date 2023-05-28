@@ -22,6 +22,7 @@ namespace RegistroDePrioridades.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Celular")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Direccion")
@@ -41,6 +42,7 @@ namespace RegistroDePrioridades.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Telefono")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("ClienteId");
