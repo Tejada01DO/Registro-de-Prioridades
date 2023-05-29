@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace RegistroDePrioridades.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20230528060226_Inicial")]
+    [Migration("20230529051300_Inicial")]
     partial class Inicial
     {
         /// <inheritdoc />
@@ -76,6 +76,21 @@ namespace RegistroDePrioridades.Migrations
                     b.HasKey("PrioridadId");
 
                     b.ToTable("Prioridades");
+                });
+
+            modelBuilder.Entity("Sistemas", b =>
+                {
+                    b.Property<int>("SistemaId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("SistemaId");
+
+                    b.ToTable("Sistemas");
                 });
 
             modelBuilder.Entity("Tickets", b =>

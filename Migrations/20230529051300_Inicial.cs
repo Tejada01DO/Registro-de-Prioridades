@@ -44,6 +44,19 @@ namespace RegistroDePrioridades.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Sistemas",
+                columns: table => new
+                {
+                    SistemaId = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Nombre = table.Column<string>(type: "TEXT", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Sistemas", x => x.SistemaId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Tickets",
                 columns: table => new
                 {
@@ -71,6 +84,9 @@ namespace RegistroDePrioridades.Migrations
 
             migrationBuilder.DropTable(
                 name: "Prioridades");
+
+            migrationBuilder.DropTable(
+                name: "Sistemas");
 
             migrationBuilder.DropTable(
                 name: "Tickets");

@@ -1,0 +1,31 @@
+@page "/ConsultaSistema"
+
+@inject SistemaBLL SistemaBLL
+
+<table class="table table-bordered">
+
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in L_Sistemas)
+        {
+            <tr>
+                <td>@item.SistemaId</td>
+                <td>@item.Nombre</td>
+            </tr> 
+        }
+    </tbody>
+</table>
+
+@code{
+    public List<Sistemas> L_Sistemas { get; set; } = new List<Sistemas>();
+
+        protected override void OnInitialized()
+        {
+            L_Sistemas = SistemaBLL.Listar(c => true); 
+        }
+}

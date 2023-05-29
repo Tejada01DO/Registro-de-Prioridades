@@ -12,6 +12,7 @@ public class Tickets
     [ForeignKey("ClienteId")]
     public int ClienteId { get; set; }
 
+    [ForeignKey("SistemaId")]
     public int SistemaId { get; set; }
 
     [ForeignKey("PrioridadId")]

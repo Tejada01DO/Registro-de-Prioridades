@@ -4,6 +4,7 @@
 @inject TicketBLL ticketBLL
 @inject ClienteBLL ClienteBLL
 @inject PrioridadesBLL prioridadesBLL
+@inject SistemaBLL SistemaBLL
 
 <EditForm model = "Tickets" OnValidSubmit="Guardar">
     <DataAnnotationsValidator />
@@ -42,8 +43,13 @@
 
                 <div class="mb-3">
                     <label class="form-label" for="SistemaId">SistemaId:</label>
-                    <InputNumber @bind-Value="tickets.SistemaId" class="form-control"/>
-                    <ValidationMessage For="@(() => tickets.SistemaId)" />
+                    <InputSelect @bind-Value="tickets.SistemaId" class="form-control">
+                    @foreach(var item in L_Sistemas)
+                    {
+                        <option value="@item.SistemaId">@item.SistemaId</option>
+                    }
+                    </InputSelect> 
+                    <ValidationMessage For="@(() => tickets.SistemaId)"></ValidationMessage> 
                 </div>
 
                 <div class="mb-3">
@@ -103,6 +109,8 @@
     public List<Clientes> L_Cliente { get; set; } = new List<Clientes>();
     
     public List<Prioridades> L_Prioridades { get; set; } = new List<Prioridades>();
+    
+    public List<Sistemas> L_Sistemas { get; set; } = new List<Sistemas>();
 
     protected override void OnInitialized()
     {
@@ -117,11 +125,11 @@
 
     public void Buscar()
     {
-        var clienteEncontrado = ticketBLL.Buscar(tickets.TicketId);
+        var ticketEncontrado = ticketBLL.Buscar(tickets.TicketId);
 
-        if(clienteEncontrado != null)
+        if(ticketEncontrado != null)
         {
-            this.tickets = clienteEncontrado;
+            this.tickets = ticketEncontrado;
         }
         else
         {

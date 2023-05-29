@@ -75,6 +75,21 @@ namespace RegistroDePrioridades.Migrations
                     b.ToTable("Prioridades");
                 });
 
+            modelBuilder.Entity("Sistemas", b =>
+                {
+                    b.Property<int>("SistemaId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("SistemaId");
+
+                    b.ToTable("Sistemas");
+                });
+
             modelBuilder.Entity("Tickets", b =>
                 {
                     b.Property<int>("TicketId")

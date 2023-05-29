@@ -1,0 +1,136 @@
+@page "/RegistroSistema"
+@page "/RegistroSistema/{SistemaId:int}"
+
+@inject SistemaBLL SistemaBLL
+
+<EditForm model = "Sistemas" OnValidSubmit="Guardar">
+    <DataAnnotationsValidator />
+
+    <div class ="container">
+        <div class="card shadow-lg">
+            <div class="card-header">
+                <h3>Registro de sistemas.</h3>
+            </div>
+            <div class=card-body>
+
+                <div class= "col-xs-12 col-sm-12 col-md-8 col-lg-6 col-xl-4">
+                    <label>ID Sistema:</label>
+                    <div class="input-group mb-3">
+                        <InputNumber @bind-Value ="sistemas.SistemaId" class="form-control" aria-describedby="BotonBuscar"/>
+                        <button @onclick="Buscar" class="btn btn-outline-primary" type="button" id="BotonBuscar"><i class ="oi oi-magnifying-glass"/></button>
+                    </div>
+                </div>
+                
+                <div class="mb-3">
+                    <label class="form-label" for="Nombre">Nombre:</label>
+                    <InputText @bind-Value="sistemas.Nombre" class="form-control" />
+                    <ValidationMessage For="@(() => sistemas.Nombre)" />
+                </div>
+
+
+            </div>
+            <div class="card-footer d-flex justify-content-center">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-outline-primary" @onclick="Nuevo">Nuevo <i class="oi oi-file"/></button>
+                    <button type="submit" class="btn btn-outline-success">Guardar <i class="oi oi-document"/></button>
+                    <button type="button" class="btn btn-outline-danger"@onclick="Eliminar">Eliminar <i class="oi oi-trash"/></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</EditForm>
+<label>@mensaje</label>
+
+@code
+{
+    [Parameter]
+
+    public int SistemaId { get; set; }
+
+    public Sistemas sistemas { get; set; } = new Sistemas();
+
+    public string mensaje = string.Empty;
+
+    protected override void OnInitialized()
+    {
+        if(SistemaId > 0)
+        {
+            sistemas.SistemaId = SistemaId;
+            Buscar();
+        }
+    }
+
+    public void Buscar()
+    {
+        var sistemaEncontrado = SistemaBLL.Buscar(sistemas.SistemaId);
+
+        if(sistemaEncontrado != null)
+        {
+            this.sistemas = sistemaEncontrado;
+        }
+        else
+        {
+            mensaje = "no se ha encontrado esa prioridad";
+        }
+    }
+
+    public void Guardar()
+    {
+        if(Validar())
+        {
+             
+            if(SistemaBLL.Guardar(this.sistemas))
+            {
+                mensaje= "Se ha guardado con exito";
+                Nuevo();
+            }
+            else
+            {
+                mensaje = "Error al momento de guardar, intentelo de nuevo";
+            }
+        }
+        else
+        {
+            mensaje = "Por favor rellene los campos";
+        }
+    }
+
+    public bool Validar()
+    {
+        if(string.IsNullOrEmpty(sistemas.Nombre))
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
+
+    public void Nuevo()
+    {
+        this.sistemas = new Sistemas();
+        mensaje = string.Empty;
+    }
+
+    public void Eliminar()
+    {
+        if(Validar()){
+            
+            if(SistemaBLL.Eliminar(this.sistemas))
+            {
+                mensaje="Se ha eliminado correctamente";
+                Nuevo();
+            }
+            else
+            {
+                mensaje="Error al eliminar, intentelo de nuevo";
+            }
+
+        }else{
+            mensaje = "No hay nada por eliminar";
+        }
+    }
+}

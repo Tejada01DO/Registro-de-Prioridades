@@ -14,6 +14,7 @@ builder.Services.AddServerSideBlazor();
 builder.Services.AddScoped<PrioridadesBLL>();
 builder.Services.AddScoped<ClienteBLL>();
 builder.Services.AddScoped<TicketBLL>();
+builder.Services.AddScoped<SistemaBLL>();
 
 var app = builder.Build();
 
