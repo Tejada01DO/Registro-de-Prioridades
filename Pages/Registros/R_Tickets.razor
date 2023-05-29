@@ -120,7 +120,8 @@
             Buscar();
         }
         L_Cliente = ClienteBLL.Listar(c => true);
-        L_Prioridades = prioridadesBLL.Listar(c => true); 
+        L_Prioridades = prioridadesBLL.Listar(c => true);
+        L_Sistemas = SistemaBLL.Listar(c => true);  
     }
 
     public void Buscar()
