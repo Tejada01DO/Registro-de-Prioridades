@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace RegistroDePrioridades.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20230529051300_Inicial")]
+    [Migration("20230618211950_Inicial")]
     partial class Inicial
     {
         /// <inheritdoc />
@@ -126,6 +126,45 @@ namespace RegistroDePrioridades.Migrations
                     b.HasKey("TicketId");
 
                     b.ToTable("Tickets");
+                });
+
+            modelBuilder.Entity("TicketsDetalle", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Emisor")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Mensaje")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("TicketId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("TicketsTicketId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("TicketsTicketId");
+
+                    b.ToTable("TicketsDetalle");
+                });
+
+            modelBuilder.Entity("TicketsDetalle", b =>
+                {
+                    b.HasOne("Tickets", null)
+                        .WithMany("TicketDetalle")
+                        .HasForeignKey("TicketsTicketId");
+                });
+
+            modelBuilder.Entity("Tickets", b =>
+                {
+                    b.Navigation("TicketDetalle");
                 });
 #pragma warning restore 612, 618
         }

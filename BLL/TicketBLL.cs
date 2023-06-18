@@ -53,10 +53,10 @@ public class TicketBLL
 
     public Tickets? Buscar(int TicketId)
     {
-        return _context.Tickets.AsNoTracking().SingleOrDefault(t => t.TicketId == TicketId);
+        return _context.Tickets.Include(detalle => detalle.TicketDetalle).Where(Ticket => Ticket.TicketId == TicketId).AsNoTracking().SingleOrDefault();
     }
 
     public List<Tickets> Listar(Expression<Func<Tickets, bool>> Criterio){
-        return _context.Tickets.Where(Criterio).AsNoTracking().ToList();
+        return _context.Tickets.Include(detalle => detalle.TicketDetalle).AsNoTracking().Where(Criterio).ToList();
     }
 }

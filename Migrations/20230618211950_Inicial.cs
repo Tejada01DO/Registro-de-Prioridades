@@ -74,6 +74,32 @@ namespace RegistroDePrioridades.Migrations
                 {
                     table.PrimaryKey("PK_Tickets", x => x.TicketId);
                 });
+
+            migrationBuilder.CreateTable(
+                name: "TicketsDetalle",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    TicketId = table.Column<int>(type: "INTEGER", nullable: false),
+                    Emisor = table.Column<string>(type: "TEXT", nullable: false),
+                    Mensaje = table.Column<string>(type: "TEXT", nullable: false),
+                    TicketsTicketId = table.Column<int>(type: "INTEGER", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TicketsDetalle", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_TicketsDetalle_Tickets_TicketsTicketId",
+                        column: x => x.TicketsTicketId,
+                        principalTable: "Tickets",
+                        principalColumn: "TicketId");
+                });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TicketsDetalle_TicketsTicketId",
+                table: "TicketsDetalle",
+                column: "TicketsTicketId");
         }
 
         /// <inheritdoc />
@@ -87,6 +113,9 @@ namespace RegistroDePrioridades.Migrations
 
             migrationBuilder.DropTable(
                 name: "Sistemas");
+
+            migrationBuilder.DropTable(
+                name: "TicketsDetalle");
 
             migrationBuilder.DropTable(
                 name: "Tickets");

@@ -124,6 +124,45 @@ namespace RegistroDePrioridades.Migrations
 
                     b.ToTable("Tickets");
                 });
+
+            modelBuilder.Entity("TicketsDetalle", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Emisor")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Mensaje")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("TicketId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("TicketsTicketId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("TicketsTicketId");
+
+                    b.ToTable("TicketsDetalle");
+                });
+
+            modelBuilder.Entity("TicketsDetalle", b =>
+                {
+                    b.HasOne("Tickets", null)
+                        .WithMany("TicketDetalle")
+                        .HasForeignKey("TicketsTicketId");
+                });
+
+            modelBuilder.Entity("Tickets", b =>
+                {
+                    b.Navigation("TicketDetalle");
+                });
 #pragma warning restore 612, 618
         }
     }

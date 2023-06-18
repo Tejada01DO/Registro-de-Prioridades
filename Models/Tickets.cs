@@ -7,7 +7,7 @@ public class Tickets
 
     public int TicketId { get; set; }
 
-    public DateTime Fecha { get; set; }
+    public DateTime Fecha { get; set; } = DateTime.Today;
 
     [ForeignKey("ClienteId")]
     public int ClienteId { get; set; }
@@ -26,5 +26,6 @@ public class Tickets
 
     [Required(ErrorMessage = "Es necesario dar una descripcion")]
     public string? Descripcion { get; set; }
+    public List<TicketsDetalle> TicketDetalle { get; set; } = new List<TicketsDetalle>();
 
 }
