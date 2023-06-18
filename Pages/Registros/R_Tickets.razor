@@ -9,91 +9,144 @@
 <EditForm model = "Tickets" OnValidSubmit="Guardar">
     <DataAnnotationsValidator />
 
-    <div class ="container">
-        <div class="card shadow-lg">
-            <div class="card-header">
-                <h3>Registro de Tickets.</h3>
+    <div class="card-header">
+        <h3>Registro de Tickets.</h3>
+    </div>
+    
+    <div class=card-body>
+        <div class="row">
+            <div class="col-md-6">
+                <label>ID Ticket:</label>
+                <div class="input-group">
+                    <InputNumber id="Buscar" @bind-Value ="tickets.TicketId" class="form-control" aria-describedby="BotonBuscar"/>
+                    <button @onclick="Buscar" class="btn btn-outline-primary" type="button" id="BotonBuscar"><i class ="oi oi-magnifying-glass"/></button>
+                </div>
             </div>
-            <div class=card-body>
 
-                <div class= "col-xs-12 col-sm-12 col-md-8 col-lg-6 col-xl-4">
-                    <label>ID Ticket:</label>
-                    <div class="input-group mb-3">
-                        <InputNumber @bind-Value ="tickets.TicketId" class="form-control" aria-describedby="BotonBuscar"/>
-                        <button @onclick="Buscar" class="btn btn-outline-primary" type="button" id="BotonBuscar"><i class ="oi oi-magnifying-glass"/></button>
-                    </div>
-                </div>
-                
-                <div class="mb-3">
-                    <label class="form-label" for="Fecha">Fecha:</label>
-                    <InputDate @bind-Value="tickets.Fecha" class="form-control" />
-                    <ValidationMessage For="@(() => tickets.Fecha)" />
-                </div>
-
-                <div class="mb-3">
-                    <label class="form-label" for="ClienteId">ClienteId:</label>
-                    <InputSelect @bind-Value="tickets.ClienteId" class="form-control">
-                    @foreach(var item in L_Cliente)
-                    {
-                        <option value="@item.ClienteId">@item.ClienteId</option>
-                    }
-                    </InputSelect> 
-                    <ValidationMessage For="@(() => tickets.ClienteId)"></ValidationMessage> 
-                </div>
-
-                <div class="mb-3">
-                    <label class="form-label" for="SistemaId">SistemaId:</label>
-                    <InputSelect @bind-Value="tickets.SistemaId" class="form-control">
-                    @foreach(var item in L_Sistemas)
-                    {
-                        <option value="@item.SistemaId">@item.SistemaId</option>
-                    }
-                    </InputSelect> 
-                    <ValidationMessage For="@(() => tickets.SistemaId)"></ValidationMessage> 
-                </div>
-
-                <div class="mb-3">
-                    <label class="form-label" for="PrioridadId">PrioridadId:</label>
-                    <InputSelect @bind-Value="tickets.PrioridadId" class="form-control">
-                    @foreach(var item in L_Prioridades)
-                    {
-                        <option value="@item.PrioridadId">@item.PrioridadId</option>
-                    }
-                    </InputSelect> 
-                    <ValidationMessage For="@(() => tickets.PrioridadId)"></ValidationMessage> 
-                </div>
-                
-                <div class="mb-3">
-                    <label class="form-label" for="SolicitadoPor">SolicitadoPor:</label>
-                    <InputText @bind-Value="tickets.SolicitadoPor" class="form-control"/>
-                    <ValidationMessage For="@(() => tickets.SolicitadoPor)" />
-                </div>
-
-                <div class="mb-3">
-                    <label class="form-label" for="Asunto">Asunto:</label>
-                    <InputText @bind-Value="tickets.Asunto" class="form-control"/>
-                    <ValidationMessage For="@(() => tickets.Asunto)" />
-                </div>
-
-                <div class="mb-3">
-                    <label class="form-label" for="Descripcion">Descripcion:</label>
-                    <InputText @bind-Value="tickets.Descripcion" class="form-control"/>
-                    <ValidationMessage For="@(() => tickets.Descripcion)" />
-                </div>
-
-            </div>
-            <div class="card-footer d-flex justify-content-center">
-                <div class="btn-group">
-                    <button type="button" class="btn btn-outline-primary" @onclick="Nuevo">Nuevo <i class="oi oi-file"/></button>
-                    <button type="submit" class="btn btn-outline-success">Guardar <i class="oi oi-document"/></button>
-                    <button type="button" class="btn btn-outline-danger"@onclick="Eliminar">Eliminar <i class="oi oi-trash"/></button>
-                </div>
+            <div class="col-md-6">
+                <label class="form-label" for="Fecha">Fecha:</label>
+                <InputDate @bind-Value="tickets.Fecha" class="form-control" />
+                <ValidationMessage For="@(() => tickets.Fecha)" />
             </div>
         </div>
-    </div>
+                
+        <div class="row">
+            <div class="col-md-6">
+                <label class="form-label" for="ClienteId">ClienteId:</label>
+                <InputSelect @bind-Value="tickets.ClienteId" class="form-control">
+                @foreach(var item in L_Cliente)
+                {
+                    <option value="@item.ClienteId">@item.ClienteId</option>
+                }
+                </InputSelect> 
+                <ValidationMessage For="@(() => tickets.ClienteId)"></ValidationMessage> 
+            </div>
+            
+            <div class="col-md-6">
+                <label class="form-label" for="SistemaId">SistemaId:</label>
+                <InputSelect @bind-Value="tickets.SistemaId" class="form-control">
+                @foreach(var item in L_Sistemas)
+                {
+                    <option value="@item.SistemaId">@item.SistemaId</option>
+                }
+                </InputSelect> 
+                <ValidationMessage For="@(() => tickets.SistemaId)"></ValidationMessage> 
+            </div>
+        </div>
 
+        <div class="row">
+            <div class="col-md-6">
+                <label class="form-label" for="PrioridadId">PrioridadId:</label>
+                <InputSelect @bind-Value="tickets.PrioridadId" class="form-control">
+                @foreach(var item in L_Prioridades)
+                {
+                    <option value="@item.PrioridadId">@item.PrioridadId</option>
+                }
+                </InputSelect> 
+                <ValidationMessage For="@(() => tickets.PrioridadId)"></ValidationMessage> 
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label" for="SolicitadoPor">SolicitadoPor:</label>
+                <InputText @bind-Value="tickets.SolicitadoPor" class="form-control"/>
+                <ValidationMessage For="@(() => tickets.SolicitadoPor)" />
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <label class="form-label" for="Asunto">Asunto:</label>
+                <InputText @bind-Value="tickets.Asunto" class="form-control"/>
+                <ValidationMessage For="@(() => tickets.Asunto)" />
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label" for="Descripcion">Descripcion:</label>
+                <InputText @bind-Value="tickets.Descripcion" class="form-control"/>
+                <ValidationMessage For="@(() => tickets.Descripcion)" />
+            </div>
+        </div>
+                
+        @* Detalle *@
+        <div class="detalle-table">
+            <div class="card-header">
+                <h3>Detalle del ticket</h3>
+            </div>
+        </div>
+
+        <div class="detalle-table">
+            <label class="form-label"><span class="oi oi-person"/> Nombre</label>
+            <InputText @bind-Value="ticketsDetalle.Emisor" class="form-control"/>
+        </div>
+
+        <div class="detalle-table">
+            <label class="form-label"><span class="oi oi-envelope-closed"/> Mensaje</label>
+            <InputTextArea @bind-Value="ticketsDetalle.Mensaje" class="form-control" placeholder="Agregue un mensaje."/>
+        </div>
+        
+        @* Agregar *@
+        <div class="card-footer d-flex justify-content-center">
+            <button type="button" class="btn btn-outline-success" @onclick="AgregarDetalle">Agregar</button>
+        </div>
+
+        <table class='table table-sm'>
+            <thead>
+                <th>TicketId</th>
+                <th>Emisor</th>
+                <th>Mensaje</th>
+                <th></th>
+            </thead>
+            <tbody>
+                @foreach(var detalle in tickets.TicketDetalle)
+                {
+                    var ticketEncontrado = BuscarTicket(detalle.TicketId);
+                    <tr>
+                        <td>@tickets.TicketId</td>
+                        <td>@detalle.Emisor</td>
+                        <td>@detalle.Mensaje</td>
+                        <td><button type="button" class="btn btn-danger oi oi-trash" @onclick=@(() => RemoverDetalle(detalle))></button></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        </div>
+            
+        <div class="card-footer d-flex justify-content-center">
+            <div class="btn-group">
+                <button type="button" class="btn btn-outline-primary" @onclick="Nuevo">Nuevo <i class="oi oi-file"/></button>
+                <button type="submit" class="btn btn-outline-success">Guardar <i class="oi oi-document"/></button>
+                <button type="button" class="btn btn-outline-danger"@onclick="Eliminar">Eliminar <i class="oi oi-trash"/></button>
+            </div>
+        </div>
 
 </EditForm>
+
+<style>
+    .detalle-table {
+        margin-top: 20px; 
+    }
+</style>
+
 <label>@mensaje</label>
 
 @code
@@ -101,17 +154,13 @@
     [Parameter]
 
     public int TicketId { get; set; }
-
+    public TicketsDetalle ticketsDetalle { get; set; } = new TicketsDetalle();
     public Tickets tickets { get; set; } = new Tickets();
-
     public string mensaje = string.Empty;
-
     public List<Clientes> L_Cliente { get; set; } = new List<Clientes>();
-    
     public List<Prioridades> L_Prioridades { get; set; } = new List<Prioridades>();
-    
     public List<Sistemas> L_Sistemas { get; set; } = new List<Sistemas>();
-
+    
     protected override void OnInitialized()
     {
         if(TicketId > 0)
@@ -122,6 +171,21 @@
         L_Cliente = ClienteBLL.Listar(c => true);
         L_Prioridades = prioridadesBLL.Listar(c => true);
         L_Sistemas = SistemaBLL.Listar(c => true);  
+    }
+
+    private Tickets BuscarTicket(int ticketId)
+    {
+        Tickets ticket = new Tickets();
+        var ticketEncontrado = ticketBLL.Buscar(ticketId);
+
+        if(ticketEncontrado != null)
+        {
+            return ticket = ticketEncontrado;
+        }
+        else
+        {
+            return new Tickets();
+        }
     }
 
     public void Buscar()
@@ -173,16 +237,29 @@
         {
             return false;
         }
-        else
+        if(tickets.TicketDetalle.Count == 0)
         {
-            return true;
+            return false;
         }
+        foreach(var detalle in tickets.TicketDetalle)
+        {
+            if(string.IsNullOrEmpty(detalle.Emisor))
+            {
+                return false;
+            }
+            if(string.IsNullOrEmpty(detalle.Mensaje))
+            {
+                return false;
+            }
+        }
+        return true;
     }
 
     public void Nuevo()
     {
         this.tickets = new Tickets();
         this.tickets.Fecha = DateTime.Now;
+        this.ticketsDetalle = new TicketsDetalle();
         mensaje = string.Empty;
     }
 
@@ -202,6 +279,28 @@
             
         }else{
             mensaje = "No hay nada por eliminar";
+        }
+    }
+
+    public void AgregarDetalle()
+    {
+        if(tickets != null)
+        {
+            ticketsDetalle.TicketId = tickets.TicketId;
+            
+            tickets.TicketDetalle.Add(ticketsDetalle);
+            ticketsDetalle = new TicketsDetalle();
+        }
+    }
+    public void RemoverDetalle(TicketsDetalle detalle)
+    {
+        var detalleEncontrado = tickets.TicketDetalle.Find(t => t.Id == detalle.Id);
+
+        if(detalleEncontrado != null)
+        {
+            var ticket = BuscarTicket(detalleEncontrado.TicketId);
+            detalle = detalleEncontrado;
+            tickets.TicketDetalle.Remove(detalle); 
         }
     }
 }

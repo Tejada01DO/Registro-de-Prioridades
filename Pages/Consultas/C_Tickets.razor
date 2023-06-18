@@ -2,6 +2,13 @@
 
 @inject TicketBLL ticketBLL
 
+<label>ID</label>
+<div class="input-group">
+    <InputNumber @bind-Value="filtrar" class="form-control"></InputNumber>
+    <button type="button" class="btn btn-outline-primary oi oi-magnifying-glass" @onclick="Buscar"></button>
+    <button type="button" class="btn btn-outline-primary oi oi-reload" @onclick="Reiniciar"></button>
+</div>
+
 <table class="table table-bordered">
 
     <thead>
@@ -28,6 +35,7 @@
                 <td>@item.SolicitadoPor</td>
                 <td>@item.Asunto</td>
                 <td>@item.Descripcion</td>
+                <td><a href="/RegistroTickets/@item.TicketId"><span class="oi oi-eye"></span></a></td>
             </tr> 
         }
     </tbody>
@@ -35,9 +43,21 @@
 
 @code{
     public List<Tickets> L_Tickets { get; set; } = new List<Tickets>();
+    public Tickets tickets { get; set; } = new Tickets();
+    public int filtrar { get; set; }
 
         protected override void OnInitialized()
         {
             L_Tickets = ticketBLL.Listar(c => true); 
         }
+    
+    public void Buscar()
+    {
+        L_Tickets = ticketBLL.Listar(t => t.TicketId == filtrar);
+    }
+
+    public void Reiniciar()
+    {
+        L_Tickets = ticketBLL.Listar(l => true);
+    }
 }
